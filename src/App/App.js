@@ -5,7 +5,7 @@ import NoteListNav from '../NoteListNav/NoteListNav';
 import NotePageNav from '../NotePageNav/NotePageNav';
 import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
-import dummyStore from '../dummy-store';
+import config from '../config'
 import {getNotesForFolder, findNote, findFolder} from '../notes-helpers';
 import './App.css';
 
@@ -16,9 +16,50 @@ class App extends Component {
     };
 
     componentDidMount() {
-        // fake date loading from API call
-        setTimeout(() => this.setState(dummyStore), 600);
-    }
+        Promise.all([
+            fetch(`${config.API_ENDPOINT}/notes`),
+            fetch(`${config.API_ENDPOINT}/folders`)
+          ])
+          .then(([notesRes, foldersRes]) => {
+            if (!notesRes.ok) {
+              return notesRes.json().then(e => Promise.reject(e));
+            }
+            if (!foldersRes.ok) {
+              return foldersRes.json().then(e => Promise.reject(e));
+            }
+            return Promise.all([notesRes.json(), foldersRes.json()]);
+          })
+          .then(([notes, folders]) => {
+            this.setState({notes, folders});
+          })
+          .catch(error => {
+            console.error({error});
+          });
+        }
+      
+        handleDeleteNote = id => {
+          this.setState({
+            notes: this.state.notes.filter(note => note.id !== id)
+          });
+        }
+      
+        handleAddNote = (addedNote) => {
+          this.setState({
+            notes: [
+              ...this.state.notes,
+              addedNote
+            ]
+          });
+        }
+      
+        handleAddFolder = (folder) => {
+          this.setState({
+            folders: [
+              ...this.state.folders,
+              folder
+            ]
+          });
+        }
 
     renderNavRoutes() {
         const {notes, folders} = this.state;
@@ -57,7 +98,7 @@ class App extends Component {
         const {notes, folders} = this.state;
         return (
             <>
-                {['/', '/folder/:folderId'].map(path => (
+                {['/', '/folders/:folderId'].map(path => (
                     <Route
                         exact
                         key={path}
