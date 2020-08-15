@@ -1,4 +1,5 @@
-export default {
-    API_ENDPOINT: `https://powerful-fjord-78205.herokuapp.com/`,
-    API_KEY: process.env.REACT_APP_API_KEY,
-  }
+module.exports = {
+  PORT: process.env.PORT || 8000,
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  API_TOKEN: process.env.API_TOKEN || '82ec702e-81ae-4bd3-bb15-a26cff58bd43',
+}

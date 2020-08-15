@@ -14,6 +14,7 @@ import ErrorHandler from '../ErrorHandler';
 
 import './App.css';
 
+console.log(process.env.REACT_APP_API_KEY)
 class App extends Component {
     state = {
       notes: [],
