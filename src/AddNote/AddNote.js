@@ -74,7 +74,7 @@ export default class AddNote extends Component {
         e.preventDefault();
 
         const newNote = {
-            folder_id: e.target['note-folder-id'].value,
+            note_id: e.target['note-folder-id'].value,
             name: e.target['note-name'].value,
             content: e.target['note-content'].value,
             modified: new Date(),
@@ -140,7 +140,7 @@ export default class AddNote extends Component {
                             Folder:
                         </label>
 
-                        <select id="note-folder-seiect" name="note-folder-id">
+                        <select id="note-folder-select" name="note-folder-id">
                             
                             {folders.map(folder => 
                                 <option key={folder.id} value={folder.id} onChange={e => this.updateFolderSelect(e.target.value)}>
