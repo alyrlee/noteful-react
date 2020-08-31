@@ -127,7 +127,6 @@ class App extends Component {
       deleteNote: this.handleDeleteNote,
       addFolder: this.handleAddFolder,
       addNote: this.handleAddNote
-
     };
     
     return (

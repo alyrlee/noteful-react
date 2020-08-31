@@ -30,6 +30,7 @@ export default class AddFolder extends Component {
    
    updateFolderName = (name) => {
        this.setState({name}, () => {this.validateName(name)})
+       console.log(name);
    }
 
    validateName = (folderName) => {
@@ -73,9 +74,14 @@ export default class AddFolder extends Component {
         };
 
 
-        const newFolder = {
-            folder_name: e.target['folder-name-input'].value
-        };
+        // newFolder = (folder) => {
+        //     this.setState(prevState => ({
+        //       folder: [...prevState.folder, folder],
+        //   }));
+
+        // const newFolder = {
+        //     folder_name: e.target['folder-name-input'].value
+        // };
 
         // const newFolder = { 
         //     event.target.newFolder.value
@@ -86,7 +92,7 @@ export default class AddFolder extends Component {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(folder, newFolder),
+            body: JSON.stringify(folder),
         })
         .then (res => {
             if (!res.ok) {
@@ -109,7 +115,7 @@ export default class AddFolder extends Component {
                             Create a New Folder:
                         </h2>
 
-                        <NotefulForm onSubmit={this.handleSubmit}>
+                        <NotefulForm onSubmit={this.handleSubmit} {...this.newFolder}>
                         
                             <div className="field">
 
@@ -137,5 +143,6 @@ export default class AddFolder extends Component {
 }
 
 AddFolder.propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object,
+    updateFolder: []
   }
