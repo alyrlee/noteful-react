@@ -65,6 +65,24 @@ class App extends Component {
     });
   }
 
+  updateNewNote = ( newNote ) => {
+    this.setState({
+      notes: [
+        ...this.state.notes,
+        newNote
+      ]
+    });
+  }
+
+  updateNewFolder = ( newFolder ) => {
+    this.setState({
+      folders: [
+        ...this.state.folders,
+        newFolder
+      ]
+    });
+  }
+
   renderNavRoutes() {
     return (
         <>
@@ -109,6 +127,7 @@ class App extends Component {
       deleteNote: this.handleDeleteNote,
       addFolder: this.handleAddFolder,
       addNote: this.handleAddNote
+
     };
     
     return (

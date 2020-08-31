@@ -4,6 +4,8 @@ import notefulContext from '../notefulContext';
 import config from '../config';
 import ValidationError from '../Validation Error';
 import './AddFolder.css';
+import PropTypes from 'prop-types';
+
 
 export default class AddFolder extends Component {
    static defaultProps = {
@@ -70,12 +72,21 @@ export default class AddFolder extends Component {
             folder_name: e.target['folder-name-input'].value
         };
 
+
+        const newFolder = {
+            folder_name: e.target['folder-name-input'].value
+        };
+
+        // const newFolder = { 
+        //     event.target.newFolder.value
+        // };   
+
         fetch(`${config.API_ENDPOINT}/folders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(folder),
+            body: JSON.stringify(folder, newFolder),
         })
         .then (res => {
             if (!res.ok) {
@@ -124,3 +135,7 @@ export default class AddFolder extends Component {
         );
     }
 }
+
+AddFolder.propTypes = {
+    history: PropTypes.object
+  }
