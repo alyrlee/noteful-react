@@ -6,8 +6,8 @@ import Note from './Note'
 describe(`Note component`, () => {
   const props = {
     id: 'a',
-    name: 'test-class-name',
-    modified: new Date(2018, 12, 15),
+    title: 'test-class-name',
+    date_modified: new Date(2018, 12, 15),
   }
 
   it('renders a .Note by default', () => {
