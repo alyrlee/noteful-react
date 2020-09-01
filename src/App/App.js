@@ -65,24 +65,6 @@ class App extends Component {
     });
   }
 
-  updateNewNote = ( newNote ) => {
-    this.setState({
-      notes: [
-        ...this.state.notes,
-        newNote
-      ]
-    });
-  }
-
-  updateNewFolder = ( newFolder ) => {
-    this.setState({
-      folders: [
-        ...this.state.folders,
-        newFolder
-      ]
-    });
-  }
-
   renderNavRoutes() {
     return (
         <>

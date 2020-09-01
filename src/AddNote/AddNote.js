@@ -139,7 +139,7 @@ export default class AddNote extends Component {
                             Folder:
                         </label>
 
-                        <select id="note-folder-seiect" name="note-folder-id">
+                        <select id="note-folder-select" name="note-folder-id">
                             
                             {folders.map(folder => 
                                 <option key={folder.id} value={folder.id} onChange={e => this.updateFolderSelect(e.target.value)}>

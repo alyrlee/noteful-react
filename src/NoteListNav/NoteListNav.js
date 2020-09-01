@@ -1,22 +1,28 @@
-import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import CircleButton from '../CircleButton/CircleButton'
-import { countNotesForFolder } from '../notes-helpers'
-import './NoteListNav.css'
+import React, {Component} from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CircleButton from '../CircleButton/CircleButton';
+import { countNotesForFolder } from '../notes-helpers';
+import notefulContext from '../notefulContext';
+import './NoteListNav.css';
 
-export default function NoteListNav(props) {
+export default class NoteListNav extends Component {
+  static contextType = notefulContext;
+
+  render() {
+    const { folders=[], notes=[] } = this.context;
+    console.log(this.context);
   return (
     <div className='NoteListNav'>
       <ul className='NoteListNav__list'>
-        {props.folders.map(folder =>
+        {folders.map(folder =>
           <li key={folder.id}>
             <NavLink
               className='NoteListNav__folder-link'
               to={`/folder/${folder.id}`}
             >
               <span className='NoteListNav__num-notes'>
-                {countNotesForFolder(props.notes, folder.id)}
+                {countNotesForFolder(notes, folder.id)}
               </span>
               {folder.name}
             </NavLink>
@@ -38,7 +44,5 @@ export default function NoteListNav(props) {
     </div>
   )
 }
-
-NoteListNav.defaultProps = {
-  folders: []
 }
+
