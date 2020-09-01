@@ -15,11 +15,13 @@ export default class NoteListMain extends Component {
   }
 
   static contextType = notefulContext;
-
+ 
   render () {
       const {folder_id} = this.props.match.params;
       const {notes=[]} = this.context;
+      console.log(this.context);
       const notesForFolder = getNotesForFolder(notes, folder_id);
+      console.log(notes, folder_id);
   
       return (
           <section className="NoteListMain">
