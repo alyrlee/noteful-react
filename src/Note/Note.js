@@ -68,6 +68,6 @@ export default class Note extends Component {
 
 Note.propTypes = {
 	content: PropTypes.string,
-  id: PropTypes.string,
+  folder_id: PropTypes.string,
   name: PropTypes.string,
 	}
