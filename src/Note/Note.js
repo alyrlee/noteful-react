@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
-import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import notefulContext from '../notefulContext'
 import config from '../config'
@@ -28,7 +27,6 @@ export default class Note extends Component {
       })
       .then(() => {
         this.context.deleteNote(noteId)
-        // allow parent to perform extra behaviour
         this.props.onDeleteNote(noteId)
       })
       .catch(error => {
@@ -37,12 +35,12 @@ export default class Note extends Component {
   }
 
   render() {
-    const { title, id, date_modified } = this.props;
+    const { name, folderId } = this.props;
     return (
       <div className='Note'>
-        <h2 className='Note__title'>
-          <Link to={`/note/${id}`}>
-            {title}
+        <h2 className='Note__name'>
+          <Link to={`/note/${folderId}`}>
+            {name}
           </Link>
         </h2>
         <button
@@ -56,10 +54,10 @@ export default class Note extends Component {
         </button>
         <div className='Note__dates'>
           <div className='Note__dates-modified'>
-            Modified
+            {/* Modified */}
             {' '}
             <span className='Date'>
-              {format(date_modified, 'Do MMM YYYY')}
+              {/* {format(date_modified, 'Do MMM YYYY')} */}
             </span>
           </div>
         </div>
@@ -69,7 +67,7 @@ export default class Note extends Component {
 }
 
 Note.propTypes = {
-	modified: PropTypes.string,
-  // id: PropTypes.string,
+	content: PropTypes.string,
+  id: PropTypes.string,
   name: PropTypes.string,
 	}

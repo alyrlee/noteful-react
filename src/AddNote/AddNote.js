@@ -28,8 +28,8 @@ class AddNote extends Component {
   handleNoteSubmit = (event) => {
 		event.preventDefault();
 
-		const newNote = JSON.stringify({
-      title: this.state.name.value,
+	const newNote = JSON.stringify({
+      name: this.state.name.value,
       folder_id: this.state.folderId.value,
       content: this.state.content.value,
     })
@@ -141,6 +141,7 @@ AddNote.propTypes = {
 	folders: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
+		content: PropTypes.string.isRequired,
 	})),
 	addNote: PropTypes.func
 }
