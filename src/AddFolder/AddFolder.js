@@ -19,7 +19,6 @@ class AddFolder extends Component {
 	
   handleFolderFormSubmit = (event) => {
 		event.preventDefault();
-
 		debugger;	
 		const newFolder = JSON.stringify({
 			folder_name: this.state.name.value
@@ -31,11 +30,11 @@ class AddFolder extends Component {
 			headers: { 'content-type': 'application/json' },
 			body: newFolder	
 		})
-		
 		.then(res => {
 			if (!res.ok)
 				return res.json().then(e => Promise.reject(e))
 			return res.json()
+
 		})
 		.then(response => this.context.addFolder(response))
 		.then(
